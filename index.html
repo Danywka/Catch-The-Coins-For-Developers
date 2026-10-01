@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Catch The Coins - For Developers</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #16171b;
+            color: #d1d5db;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px 12px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #21232a;
+            padding: 30px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 1px solid #2d3039;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #2d3039;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        h1 {
+            color: #ffd700;
+            font-size: 2em;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .logo-link {
+            display: inline-block;
+            transition: opacity 0.2s ease;
+            max-width: 100%;
+            flex-shrink: 0;
+        }
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+        .logo {
+            max-height: 52px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            object-fit: contain;
+        }
+        h2 {
+            color: #ffffff;
+            font-size: 1.25em;
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #b0b4be;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        ul {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 24px;
+            color: #b0b4be;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: #ffd700;
+            text-decoration: none;
+            word-break: break-word;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .notice-box {
+            background-color: #262933;
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .critical-box {
+            background-color: #2b1f20;
+            border-left: 4px solid #ff4d4d;
+            padding: 18px;
+            margin: 24px 0;
+            border-radius: 6px;
+            border-top: 1px solid #3d2425;
+            border-right: 1px solid #3d2425;
+            border-bottom: 1px solid #3d2425;
+        }
+        .effective-date {
+            font-style: italic;
+            color: #828795;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid #2d3039;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #828795;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px 6px;
+            }
+            .container {
+                padding: 20px 14px;
+            }
+            .header {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .logo {
+                max-height: 40px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.1em;
+                margin-top: 20px;
+            }
+            p, li {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>For developers</h1>
+            <a href="https://kuzmenkodanywka.wixsite.com/danywka-games" target="_blank" rel="noopener noreferrer" class="logo-link">
+                <img src="https://static.wixstatic.com/media/29c27d_01c106961be243ecaa344857f8e6cdf6~mv2.png/v1/fill/w_833,h_136,al_c,lg_1,q_85,enc_avif,quality_auto/danywka_games_logo.png" alt="DanywkaGames Logo" class="logo">
+            </a>
+        </div>
+        
+        <p>This technical document provides guidelines and structural information regarding the source code, decompilation, and development environment for <strong>Catch The Coins</strong>, developed by <strong>DanywkaGames</strong>.</p>
+
+        <div class="notice-box">
+            <p style="color: #ffffff; font-weight: bold; margin-bottom: 8px;">Engine Compatibility Requirement:</p>
+            <p style="margin-bottom: 0;">This project relies on features and API specifications implemented in modern GDScript versions. Opening or launching this project requires <strong>Godot Engine version 4.7 or higher</strong>. Attempting to run or build the project on earlier Godot 4.x versions may result in parsing errors or broken signal bindings.</p>
+        </div>
+
+        <h2>1. Decompilation &amp; Source Code Analysis</h2>
+        <p>Decompiling, analyzing, or reverse-engineering the binary or packaged assets (<code>.pck</code>) for research or educational purposes is permitted. Developers examining the codebase must observe the following terms:</p>
+        <ul>
+            <li><strong>Educational Rights:</strong> Developers may analyze algorithms, UI management systems, and GDScript implementations for personal learning.</li>
+            <li><strong>Asset Ownership &amp; Commercial Restrictions:</strong> The game logic, graphics, branding, and original audio files remain the intellectual property of DanywkaGames. Unedited redistribution, commercial exploitation, or re-uploading modified builds under a different name is prohibited.</li>
+        </ul>
+
+        <h2>2. Technical Architecture &amp; System Dependencies</h2>
+        <p>Developers modifying or analyzing the codebase should take note of critical structural requirements:</p>
+        <ul>
+            <li><strong>Autoload Singletons:</strong> Central management systems like <code>ProgressManager</code> must remain registered as active singletons. Essential game data including coin counts, unlocks, and achievement states depend on this node.</li>
+            <li><strong>UI Hierarchy &amp; Deferred Sizing:</strong> Hidden UI components (such as <code>WhatCoinPanel</code> and <code>WhatCoinBG</code>) utilize deferred initialization. Modifying their initial visibility without handling frame waits (e.g., <code>await get_tree().process_frame</code>) will cause incorrect bounding box and pivot point calculations during dynamic scale animations.</li>
+            <li><strong>Dynamic Text Overrides:</strong> Achievement notification banners dynamically override font sizes (e.g., scaling strings down to 33px for specific keys) based on layout constraints. Overriding these controls may lead to UI overflow on low-resolution displays.</li>
+            <li><strong>Input &amp; Platform Adaptation:</strong> Control schemes automatically toggle between physical input handlers and touch UI controls based on configuration settings stored in <code>user://settings.cfg</code>.</li>
+        </ul>
+
+        <div class="critical-box">
+            <h2 style="color: #ff6b6b; margin-top: 0; font-size: 1.3em;">Files &amp; Folders That Must NOT Be Deleted Under Any Circumstances</h2>
+            <p style="color: #f1b0b0;">Deleting any of the following key files, folders, or root nodes will cause an irreversible failure of the project structure, parsing errors, or complete inability to compile and run the game:</p>
+            <ul style="color: #e6c3c3;">
+                <li><strong>Root Nodes:</strong> The primary <code>Control</code> node located at the top of the scene tree.</li>
+                <li><strong>Scene Files:</strong> All <code>.tscn</code> files (scene structures and UI layouts).</li>
+                <li><strong>System Godot Files:</strong> <code>.godot</code>, <code>.pck</code>, and <code>.uid</code> files, as well as the <code>.godot</code> directory.</li>
+                <li><strong>Configuration Files:</strong> <code>.import</code>, <code>.gitattributes</code>, and <code>.gitignore</code> files.</li>
+                <li><strong>Critical Scripts:</strong> <code>ProgressManager.gd</code> and <code>achievement_message.gd</code>.</li>
+                <li><strong>System Resources:</strong> The <code>fonts</code> folder and the <code>CustomizationSkins</code> folder.</li>
+            </ul>
+            <p style="color: #ff9999; font-style: italic; margin-bottom: 0;">If you want to completely trash and break the game, feel free to delete all of these :)</p>
+        </div>
+
+        <h2>3. Data Persistence &amp; Save Management</h2>
+        <p>Local data storage is formatted and saved to the <code>user://</code> directory. Modifications to save keys or data structures should maintain backward compatibility with established dictionary keys to prevent data corruption upon initialization.</p>
+
+        <h2>4. Developer Support &amp; Enquiries</h2>
+        <p>For technical inquiries, bug reports regarding decompiled structures, or architectural questions, contact the developer at <a href="https://mail.google.com/mail/u/0/?fs=1&to=Kuzmenkodanywka@gmail.com&tf=cm" target="_blank" rel="noopener noreferrer">Kuzmenkodanywka@gmail.com</a>.</p>
+
+        <p class="effective-date">Documentation updated: October 2026.</p>
+
+        <footer>
+            &copy; 2026 DanywkaGames. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
